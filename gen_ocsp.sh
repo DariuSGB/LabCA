@@ -22,7 +22,7 @@ sed -i -E "s/(^fqdn\s+=\s).*/\1$DOMAIN/" $FOLDER/ca/$CA.cnf
 
 sed -i -E "s/(^x509_extensions\s+=\s).*/\1ocsp_ext/" $FOLDER/ca/$CA.cnf
 
-openssl req -new -out $FOLDER/ca/$DOMAIN.csr -sha256 -newkey rsa:2048 -keyout $FOLDER/ca/$DOMAIN.key -nodes -config $FOLDER/ca/$CA.cnf
+openssl req -new -config $FOLDER/ca/$CA.cnf -out $FOLDER/ca/$DOMAIN.csr -keyout $FOLDER/ca/$DOMAIN.key -nodes
 openssl ca -config $FOLDER/ca/$CA.cnf -in $FOLDER/ca/$DOMAIN.csr -out $FOLDER/ca/$DOMAIN.crt
 
 sed -i -E "s/(^x509_extensions\s+=\s).*/\1x509_ext/" $FOLDER/ca/$CA.cnf
