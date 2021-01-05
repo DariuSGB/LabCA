@@ -3,6 +3,7 @@
 # author: Dario Garrido                                                 #
 # date: 20210105                                                        #
 # description: Create enviroment and CA self-signed cert                #
+# usage: ./createCA.sh <ca_name>                                        #
 #########################################################################
 
 #!/bin/sh
