@@ -20,5 +20,5 @@ FOLDER=.
 
 sed -i -E "s/(^fqdn\s+=\s).*/\1$DOMAIN/" $FOLDER/ca/$CA.cnf
 
-openssl req -new -out $FOLDER/certs/$DOMAIN.csr -newkey rsa:2048 -keyout $FOLDER/certs/$DOMAIN.key -nodes -config $FOLDER/ca/$CA.cnf
+openssl req -new -config $FOLDER/ca/$CA.cnf -out $FOLDER/certs/$DOMAIN.csr -keyout $FOLDER/certs/$DOMAIN.key -nodes
 openssl ca -config $FOLDER/ca/$CA.cnf -in $FOLDER/certs/$DOMAIN.csr -out $FOLDER/certs/$DOMAIN.crt
