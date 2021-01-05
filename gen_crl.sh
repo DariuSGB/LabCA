@@ -2,7 +2,7 @@
 # title: gen_crl.sh                                                     #
 # author: Dario Garrido                                                 #
 # date: 20210105                                                        #
-# description: Create CRL cert                                          #
+# description: Create a CRL cert                                        #
 # usage: ./gen_crl.sh <ca_name>                                         #
 #########################################################################
 
