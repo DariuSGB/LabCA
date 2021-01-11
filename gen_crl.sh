@@ -15,6 +15,7 @@ then
 fi
 
 CA=$1
-FOLDER=.
+#FOLDER=.
+FOLDER=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
 openssl ca -config $FOLDER/ca/$CA.cnf -gencrl -out $FOLDER/ca/$CA.crl
