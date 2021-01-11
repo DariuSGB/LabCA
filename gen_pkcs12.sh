@@ -9,14 +9,15 @@
 
 #!/bin/sh
 
+#FOLDER=.
+FOLDER=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+
 if [ "$#" -eq 1 ]
 then
-  FOLDER=.
   DOMAIN=$1
   openssl pkcs12 -export -in $FOLDER/certs/$DOMAIN.crt -inkey $FOLDER/certs/$DOMAIN.key -out $FOLDER/certs/$DOMAIN.p12
 elif [ "$#" -eq 2 ]
 then
-  FOLDER=.
   CA=$1
   DOMAIN=$2
   openssl pkcs12 -export -in $FOLDER/certs/$DOMAIN.crt -inkey $FOLDER/certs/$DOMAIN.key -out $FOLDER/certs/$DOMAIN.p12 -certfile $FOLDER/ca/$CA.crt
