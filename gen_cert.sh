@@ -17,7 +17,8 @@ fi
 
 CA=$1
 DOMAIN=$2
-FOLDER=.
+#FOLDER=.
+FOLDER=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
 sed -i -E "s/(^fqdn\s+=\s).*/\1$(echo $DOMAIN | sed -E "s/[Ww]ildcard/\*/")/" $FOLDER/ca/$CA.cnf
 
