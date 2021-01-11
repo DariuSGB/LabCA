@@ -8,4 +8,7 @@
 
 #!/bin/sh
 
-rm -Rf ca/ certs/ db/ store/
+#FOLDER=.
+FOLDER=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+
+rm -Rf $FOLDER/ca/ $FOLDER/certs/ $FOLDER/db/ $FOLDER/store/
