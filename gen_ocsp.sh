@@ -16,7 +16,8 @@ fi
 
 CA=$1
 DOMAIN=$CA.ocsp
-FOLDER=.
+#FOLDER=.
+FOLDER=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
 sed -i -E "s/(^fqdn\s+=\s).*/\1$DOMAIN/" $FOLDER/ca/$CA.cnf
 
