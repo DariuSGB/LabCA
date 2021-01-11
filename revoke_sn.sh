@@ -16,6 +16,7 @@ fi
 
 CA=$1
 SERIAL=$2
-FOLDER=.
+#FOLDER=.
+FOLDER=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
 openssl ca -config $FOLDER/ca/$CA.cnf -revoke $FOLDER/store/$CA/$SERIAL.pem
