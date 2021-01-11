@@ -16,7 +16,8 @@ fi
 
 CA1=$1
 CA2=$2
-FOLDER=.
+#FOLDER=.
+FOLDER=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
 mkdir -p $FOLDER/store/$CA2
 
