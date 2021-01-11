@@ -15,7 +15,8 @@ then
 fi
 
 CA=$1
-FOLDER=.
+#FOLDER=.
+FOLDER=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
 mkdir -p $FOLDER/store/$CA
 mkdir $FOLDER/certs
