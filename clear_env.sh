@@ -11,4 +11,4 @@
 #FOLDER=.
 FOLDER=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
-rm -Rf $FOLDER/ca/ $FOLDER/certs/ $FOLDER/db/ $FOLDER/store/
+rm -Rf $FOLDER/ca/ $FOLDER/certs/ $FOLDER/db/ $FOLDER/store/ $FOLDER/ocsp_log.txt
