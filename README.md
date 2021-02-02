@@ -46,9 +46,9 @@ This certificate is created with the next x509 extensions:
 
 ### Customization
 
-All environment folders and config file is generated after this execution.
+All environment folders and config file are generated after this execution.
 
-You can customize the config file before running this script. These are some of the parameters that we recommend to change:
+You can customize the config file before running this script. These are some of the parameters we recommend to change to better suit your requirements:
 
 ```
 ######################
@@ -74,7 +74,6 @@ countryName             = ES
 stateOrProvinceName     = Spain
 localityName            = Lab
 organizationName        = LabCA
-commonName              = \$fqdn
 ```
 
 ## Create Intermediate CA
@@ -102,7 +101,18 @@ This certificate is created with the next x509 extensions:
 ./create_int_ca.sh mylabCA myintCA
 ```
 
-## Create Certificate
+## Generate Certificate
+
+This script is used to generate a CA-signed certificate.
+
+This certificate is created with the next x509 extensions:
+- Basic Constraints: CA:FALSE
+- Key Usage: Digital Signature, Key Encipherment
+- Extended Key Usage: TLS Web Server Authentication, TLS Web Client Authentication
+- CRL Distribution Points: URI:*<CRL_URI>*
+- Authority Information Access
+- Subject Key Identifier
+- Authority Key Identifier
 
 ### Usage
 
@@ -114,4 +124,48 @@ This certificate is created with the next x509 extensions:
 
 ```bash
 ./gen_cert.sh mylabCA www.example.com
+```
+
+## Generate OCSP Certificate
+
+This script is used to generate a OCSP certificate, used for signing OCSP responses.
+
+This certificate is created with the next x509 extensions:
+- Basic Constraints: CA:FALSE
+- Key Usage: Digital Signature, Non Repudiation, Key Encipherment
+- Extended Key Usage: OCSP Signing
+- Subject Key Identifier
+- Authority Key Identifier
+
+### Usage
+
+```bash
+./gen_ocsp.sh <ca_name>
+```
+
+### Example
+
+```bash
+./gen_ocsp.sh mylabCA
+```
+
+## Generate CRL Certificate
+
+This script is used to generate a CRL certificate, used for CRL validation.
+
+This certificate is created with the next x509 extensions:
+- CRL Number: <serial_number>
+- Authority Information Access
+- Authority Key Identifier
+
+### Usage
+
+```bash
+./gen_crl.sh <ca_name>
+```
+
+### Example
+
+```bash
+./gen_crl.sh mylabCA
 ```
