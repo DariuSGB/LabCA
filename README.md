@@ -48,7 +48,7 @@ This certificate is created with the next x509 extensions:
 
 All environment folders and config file are generated after this execution.
 
-You can customize the config file before running this script. These are some of the parameters we recommend to change to better suit your requirements:
+You can customize the config file just modifying the script before running it. These are some of the parameters we recommend to change to better suit your requirements:
 
 ```
 ######################
@@ -83,7 +83,7 @@ This script is used to generate an intermedian CA certificate.
 This certificate is created with the next x509 extensions:
 - Basic Constraints: CA:TRUE, pathlen:0
 - Key Usage: Digital Signature, Certificate Sign, CRL Sign
-- CRL Distribution Points: URI:*<CRL_URI>*
+- CRL Distribution Points: URI:*<CRL_URL>*
 - Certificate Policies: Any Policy
 - Authority Information Access
 - Subject Key Identifier
@@ -124,6 +124,15 @@ This certificate is created with the next x509 extensions:
 
 ```bash
 ./gen_cert.sh mylabCA www.example.com
+```
+
+### Wildcard Certs
+
+This script allows the generation of wildcard fqdn just naming them with the word "Wildcard".
+An example:
+
+```bash
+./gen_cert.sh mylabCA wildcard.example.com
 ```
 
 ## Generate OCSP Certificate
