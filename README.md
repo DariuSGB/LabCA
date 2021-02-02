@@ -1,5 +1,5 @@
 # LabCA
-The main goal of this repository is to get an easy way to create your own certificate CA for using it in your lab enviroment.
+The main goal of this repository is to get an easy way to create your own certificate CA suite for using it in your lab environment.
 
 ## Installation
 
