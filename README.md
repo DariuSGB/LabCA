@@ -1,5 +1,5 @@
 # LabCA
-The main goal of this repository is to get an easy way to create your own certificate CA suite for using it in your lab environment.
+The main goal of this repository is to get an easy way to create your own RSA certificate CA suite for using it in your lab environment.
 
 ## Installation
 
@@ -40,9 +40,23 @@ This certificate is created with the next x509 extensions:
 
 ### Example
 
-```bash
-./create_root_ca.sh mylabCA
 ```
+./create_root_ca.sh mylabCA
+...
+Enter pass phrase for /home/user/LabCA/ca/mylabCA.key:****
+Verifying - Enter pass phrase for /home/user/LabCA/ca/mylabCA.key:****
+Enter pass phrase for /home/user/LabCA/ca/mylabCA.key:****
+...
+```
+
+### Folders
+
+| Folder | Descripción |
+| --- | --- |
+| `ca` | Where CA certificates are stored (CA, CRL, OCSP) |
+| `certs` | Where certificates are stored after being signed |
+| `db` | This folder contains information about signing and revoking certificates |
+| `store` | Repository of signed certificates. Useful as historical |
 
 ### Customization
 
@@ -97,8 +111,18 @@ This certificate is created with the next x509 extensions:
 
 ### Example
 
-```bash
+```
 ./create_int_ca.sh mylabCA myintCA
+Enter pass phrase for /home/user/LabCA/ca/myintCA.key:****
+Verifying - Enter pass phrase for /home/user/LabCA/ca/myintCA.key:****
+Enter pass phrase for /home/user/LabCA/ca/myintCA.key:****
+Using configuration from /home/user/LabCA/ca/mylabCA.cnf
+Enter pass phrase for /home/user/LabCA/ca/mylabCA.key:****
+...
+Sign the certificate? [y/n]:y
+1 out of 1 certificate requests certified, commit? [y/n]y
+Write out database with 1 new entries
+Data Base Updated
 ```
 
 ## Generate Certificate
@@ -122,16 +146,24 @@ This certificate is created with the next x509 extensions:
 
 ### Example
 
-```bash
+```
 ./gen_cert.sh mylabCA www.example.com
+...
+Enter pass phrase for /home/user/LabCA/ca/mylabCA.key:****
+...
+Certificate is to be certified until Jul 22 19:26:10 2022 GMT (530 days)
+Sign the certificate? [y/n]:y
+1 out of 1 certificate requests certified, commit? [y/n]y
+Write out database with 1 new entries
+Data Base Updated
 ```
 
 ### Wildcard Certs
 
-This script allows the generation of wildcard fqdn just naming them with the word "Wildcard".
+This script allows the generation of wildcard FQDN just naming them with the word "Wildcard".
 An example:
 
-```bash
+```
 ./gen_cert.sh mylabCA wildcard.example.com
 ```
 
@@ -154,8 +186,16 @@ This certificate is created with the next x509 extensions:
 
 ### Example
 
-```bash
+```
 ./gen_ocsp.sh mylabCA
+...
+Enter pass phrase for /home/user/LabCA/ca/mylabCA.key:****
+...
+Certificate is to be certified until Jul 22 19:26:32 2022 GMT (530 days)
+Sign the certificate? [y/n]:y
+1 out of 1 certificate requests certified, commit? [y/n]y
+Write out database with 1 new entries
+Data Base Updated
 ```
 
 ## Generate CRL Certificate
@@ -175,6 +215,81 @@ This certificate is created with the next x509 extensions:
 
 ### Example
 
-```bash
+```
 ./gen_crl.sh mylabCA
+Enter pass phrase for /home/user/LabCA/ca/mylabCA.key:****
+```
+
+## Transalte To PKCS#12
+
+This script translates one existing certificate by FQDN to PKCS#12 format.
+The certificate must exist in your *certs* folder.
+
+### Usage
+
+```bash
+./gen_pkcs12.sh <fqdn>
+./gen_pkcs12.sh <intermedian_ca_name> <fqdn>
+```
+
+### Example
+
+```
+./gen_pkcs12.sh www.example.com
+Enter Export Password:****
+Verifying - Enter Export Password:****
+```
+
+## Revoke A Certificate
+
+It revokes one certificate by serial number. There exists a repository of signed certificates in *store/*, the best way to proceed is to search there what certificate you want to revoke and copy the SN to used later.
+
+### Usage
+
+```bash
+./revoke_sn.sh <ca_name> <cert_sn>
+```
+
+### Example
+
+```
+./revoke_sn.sh mylabCA 8A6BE4D49999ACDD
+Enter pass phrase for /home/user/LabCA/ca/mylabCA.key:
+Revoking Certificate 8A6BE4D49999ACDD.
+Data Base Updated
+```
+
+## Initiate OCSP Responder
+
+It runs an OCSP responder listening on port 8080. One initial requirement to execute this is to generate a CA OCSP certificate previously.
+
+### Usage
+
+```bash
+./ocsp_responder.sh <ca_name>
+```
+
+### Example
+
+```
+./ocsp_responder.sh mylabCA
+Waiting for OCSP client connections...
+```
+
+## Reset Your Environment
+
+This is an easy way to reset all your environment, removing all your folders and certificates to start again from the beginning.
+
+### Usage
+
+```bash
+./clear_env.sh
+```
+
+### Example
+
+```
+./clear_env.sh
+Continue (y/n)?y
+Removing folders.
 ```
