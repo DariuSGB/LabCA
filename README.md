@@ -13,7 +13,7 @@ chmod +x $(ls | grep -v README)
 
 | Script | Description |
 | --- | --- |
-| [`create_root_ca.sh`](##-create-ca) | generate a CA certificate and store it in **./ca/** |
+| [`create_root_ca.sh`](#create-ca) | generate a CA certificate and store it in **./ca/** |
 | `create_int_ca.sh` | generate an intermediate CA signed by the root CA and store it in **./ca/** |
 | `gen_cert.sh` | generate an certificate signed by the defined CA and store it in **./cert/** |
 | `gen_ocsp.sh` | generate an OCSP certificate for signing OCSP requests and store it in **./ca/** |
