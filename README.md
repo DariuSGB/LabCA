@@ -11,7 +11,7 @@ chmod +x $(ls | grep -v README)
 
 ## Description
 
-| Script | Descripción |
+| Script | Description |
 | --- | --- |
 | `create_root_ca.sh` | generate a CA certificate and store it in **./ca/** |
 | `create_int_ca.sh` | generate an intermediate CA signed by the root CA and store it in **./ca/** |
@@ -51,16 +51,16 @@ Enter pass phrase for /home/user/LabCA/ca/mylabCA.key:****
 
 ### Folders
 
-| Folder | Descripción |
+| Folder | Description |
 | --- | --- |
 | `ca` | Where CA certificates are stored (CA, CRL, OCSP) |
 | `certs` | Where certificates are stored after being signed |
 | `db` | This folder contains information about signing and revoking certificates |
-| `store` | Repository of signed certificates. Useful as historical |
+| `store` | Repository of signed certificates. Useful as an historical |
 
 ### Customization
 
-All environment folders and config file are generated after this execution.
+All environment folders and config files are generated after this execution.
 
 You can customize the config file just modifying the script before running it. These are some of the parameters we recommend to change to better suit your requirements:
 
@@ -119,6 +119,7 @@ Enter pass phrase for /home/user/LabCA/ca/myintCA.key:****
 Using configuration from /home/user/LabCA/ca/mylabCA.cnf
 Enter pass phrase for /home/user/LabCA/ca/mylabCA.key:****
 ...
+Certificate is to be certified until Feb  5 19:25:51 2031 GMT (3650 days)
 Sign the certificate? [y/n]:y
 1 out of 1 certificate requests certified, commit? [y/n]y
 Write out database with 1 new entries
@@ -160,7 +161,7 @@ Data Base Updated
 
 ### Wildcard Certs
 
-This script allows the generation of wildcard FQDN just naming them with the word "Wildcard".
+This script allows the generation of a wildcard FQDN just naming it with the word "Wildcard".
 An example:
 
 ```
@@ -222,8 +223,8 @@ Enter pass phrase for /home/user/LabCA/ca/mylabCA.key:****
 
 ## Transalte To PKCS#12
 
-This script translates one existing certificate by FQDN to PKCS#12 format.
-The certificate must exist in your *certs* folder.
+This script translates one existing certificate to PKCS#12 format.
+The certificate must exist in your *certs/* folder.
 
 ### Usage
 
@@ -242,7 +243,7 @@ Verifying - Enter Export Password:****
 
 ## Revoke A Certificate
 
-It revokes one certificate by serial number. There exists a repository of signed certificates in *store/*, the best way to proceed is to search there what certificate you want to revoke and copy the SN to used later.
+It revokes one certificate by serial number. There exists a repository of signed certificates in *store/*, the best way to proceed is to search there what certificate you want to revoke and then copy the SN to used later.
 
 ### Usage
 
@@ -254,7 +255,7 @@ It revokes one certificate by serial number. There exists a repository of signed
 
 ```
 ./revoke_sn.sh mylabCA 8A6BE4D49999ACDD
-Enter pass phrase for /home/user/LabCA/ca/mylabCA.key:
+Enter pass phrase for /home/user/LabCA/ca/mylabCA.key:****
 Revoking Certificate 8A6BE4D49999ACDD.
 Data Base Updated
 ```
