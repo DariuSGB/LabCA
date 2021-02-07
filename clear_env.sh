@@ -11,4 +11,9 @@
 #FOLDER=.
 FOLDER=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
-rm -Rf $FOLDER/ca/ $FOLDER/certs/ $FOLDER/db/ $FOLDER/store/ $FOLDER/ocsp_log.txt
+read -p "Continue (y/n)?" choice
+case "$choice" in
+  y|Y ) rm -Rf $FOLDER/ca/ $FOLDER/certs/ $FOLDER/db/ $FOLDER/store/ $FOLDER/ocsp_log.txt ; echo "Removing folders.";;
+  n|N ) echo "Exiting.";;
+  * ) echo "Invalid. Exiting.";;
+esac
