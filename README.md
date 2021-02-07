@@ -14,14 +14,14 @@ chmod +x $(ls | grep -v README)
 | Script | Description |
 | --- | --- |
 | [`create_root_ca.sh`](#create-ca) | generate a CA certificate and store it in **./ca/** |
-| `create_int_ca.sh` | generate an intermediate CA signed by the root CA and store it in **./ca/** |
-| `gen_cert.sh` | generate an certificate signed by the defined CA and store it in **./cert/** |
-| `gen_ocsp.sh` | generate an OCSP certificate for signing OCSP requests and store it in **./ca/** |
-| `gen_crl.sh` | generate a CRL certificate and store it in **./ca/** |
-| `revoke_sn.sh` | revoke a certificate base on serial number |
-| `gen_pkcs12.sh` | generate a PKCS#12 certificate from a PEM certificate provided |
-| `ocsp_responder.sh` | generate a OCSP responder for listening requests on port 8080 |
-| `clear_env.sh` | clear all folders and certs |
+| [`create_int_ca.sh`](#create-intermediate-ca) | generate an intermediate CA signed by the root CA and store it in **./ca/** |
+| [`gen_cert.sh`](#generate-certificate) | generate an certificate signed by the defined CA and store it in **./cert/** |
+| [`gen_ocsp.sh`](#generate-ocsp-certificate) | generate an OCSP certificate for signing OCSP requests and store it in **./ca/** |
+| [`gen_crl.sh`](#generate-crl-certificate) | generate a CRL certificate and store it in **./ca/** |
+| [`gen_pkcs12.sh`](#transalte-to-pkcs12) | generate a PKCS#12 certificate from a PEM certificate provided |
+| [`revoke_sn.sh`](#revoke-a-certificate) | revoke a certificate base on serial number |
+| [`ocsp_responder.sh`](#run-ocsp-responder) | generate a OCSP responder for listening requests on port 8080 |
+| [`clear_env.sh`](#reset-your-environment) | clear all folders and certs |
 
 ## Create CA
 
@@ -260,7 +260,7 @@ Revoking Certificate 8A6BE4D49999ACDD.
 Data Base Updated
 ```
 
-## Initiate OCSP Responder
+## Run OCSP Responder
 
 It runs an OCSP responder listening on port 8080. One initial requirement to execute this is to generate a CA OCSP certificate previously.
 
