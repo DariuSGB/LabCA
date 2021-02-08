@@ -23,6 +23,10 @@ chmod +x $(ls | grep -v README)
 | [`ocsp_responder.sh`](#run-ocsp-responder) | generate a OCSP responder for listening requests on port 8080 |
 | [`clear_env.sh`](#reset-your-environment) | clear all folders and certs |
 
+## Considerations
+
+Take into account that this was made only following a functional approach and we didn't put much effort in security. For this reason, we don't recommend to use this suite of scripts in a professional environment.
+
 ## Create CA
 
 This script is used to generate the root CA certificate.
@@ -92,7 +96,7 @@ organizationName        = LabCA
 
 ## Create Intermediate CA
 
-This script is used to generate an intermedian CA certificate.
+This script is used to generate an intermediate CA certificate.
 
 This certificate is created with the next x509 extensions:
 - Basic Constraints: CA:TRUE, pathlen:0
@@ -170,7 +174,7 @@ An example:
 
 ## Generate OCSP Certificate
 
-This script is used to generate a OCSP certificate, used for signing OCSP responses.
+This script is used to generate an OCSP certificate, used for signing OCSP responses.
 
 This certificate is created with the next x509 extensions:
 - Basic Constraints: CA:FALSE
@@ -243,7 +247,7 @@ Verifying - Enter Export Password:****
 
 ## Revoke A Certificate
 
-It revokes one certificate by serial number. There exists a repository of signed certificates in *store/*, the best way to proceed is to search there what certificate you want to revoke and then copy the SN to used later.
+It revokes one certificate by serial number. There exists a repository of signed certificates in *store/*, the best way to proceed is to search there what certificate you want to revoke and then copy the SN to use it later.
 
 ### Usage
 
@@ -279,7 +283,7 @@ Waiting for OCSP client connections...
 
 ## Reset Your Environment
 
-This is an easy way to reset all your environment, removing all your folders and certificates to start again from the beginning.
+This is an easy way to reset all your environments, removing all your folders and certificates to start again from the beginning.
 
 ### Usage
 
