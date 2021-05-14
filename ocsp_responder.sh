@@ -17,4 +17,4 @@ fi
 CA=$1
 #FOLDER=.
 FOLDER=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
-openssl ocsp -index $FOLDER/db/$CA.db -port 8080 -rsigner $FOLDER/ca/$CA.ocsp.crt -rkey $FOLDER/ca/$CA.ocsp.key -CA $FOLDER/ca/$CA.crt -text -out $FOLDER/ocsp_log.txt
+openssl ocsp -index $FOLDER/db/$CA.db -port 8080 -rsigner $FOLDER/ca/$CA.ocsp.crt -rkey $FOLDER/ca/$CA.ocsp.key -CA $FOLDER/ca/$CA.crt -text -out $FOLDER/ocsp_log.txt -ignore_err
